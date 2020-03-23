@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CruiseTrackerDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{602eead9-cb8a-40e7-8fc6-3a8ad5545acf}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CruiseTrackerDatabase</RootNamespace>
+    <AssemblyName>CruiseTrackerDatabase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schema objects" />
+    <Folder Include="Schema objects\Schemas" />
+    <Folder Include="Schema objects\Schemas\dbo" />
+    <Folder Include="Schema objects\Schemas\dbo\Programmability" />
+    <Folder Include="Schema objects\Schemas\dbo\Tables" />
+    <Folder Include="Schema objects\Schemas\dbo\Views" />
+    <Folder Include="Schema objects\Schemas\dbo\Programmability\Functions" />
+    <Folder Include="Schema objects\Schemas\dbo\Programmability\Stored Procedures" />
+    <Folder Include="Schema objects\Schemas\dbo\Programmability\Types" />
+    <Folder Include="Schema objects\Schemas\dbo\Tables\Indexes" />
+    <Folder Include="Schema objects\Schemas\dbo\Tables\Keys" />
+    <Folder Include="Schema objects\Schemas\dbo\Tables\Triggers" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema objects\Schemas\dbo\Tables\Putnik.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Karta.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Putnik_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Karta_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Karta_FK1.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Karta_FK2.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Agencija_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Agencija.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Brod.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Destinacija.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Firma.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Kapetan.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Luka.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Plovidba.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Putnicki.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Teretni.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Brod_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Destinacija_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Firma_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Kapetan_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Luka_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Plovidba_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Karta_FK3.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Plovidba_FK1.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Plovidba_FK2.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Plovidba_FK3.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Putnicki_FK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Teretni_FK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Kapetan_Upravlja_Brodom.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Putnicki_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Teretni_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Destinacija_Koristi_Luku.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Destinacija_Koristi_Luku_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Kapetan_Upravlja_Brodom_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Teretni_PrevoziZa_Firmu.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Teretni_PrevoziZa_Firmu_PK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Teretni_PrevoziZa_Firmu_FK1.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Teretni_PrevoziZa_Firmu_FK2.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Kapetan_Upravlja_Brodom_FK1.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Kapetan_Upravlja_Brodom_FK2.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Destinacija_Koristi_Luku_FK.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Keys\Karta_FK4.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Programmability\Stored Procedures\BrojPlovidbiZaIstuDestinacijuIKapetana.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Programmability\Functions\GetCruisesCountForDestinationAndCaptain.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Triggers\BrodTrigger.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Triggers\BrodRemoveTrigger.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Triggers\TeretniBrodRemoveTrigger.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Triggers\PutnickiBrodRemoveTrigger.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CruiseTrackerDatabase.refactorlog" />
+  </ItemGroup>
+</Project>

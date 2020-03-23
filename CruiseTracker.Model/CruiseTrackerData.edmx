@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CruiseTrackerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agencija">
+          <Key>
+            <PropertyRef Name="brAgencije" />
+          </Key>
+          <Property Name="brAgencije" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Brod">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destinacija">
+          <Key>
+            <PropertyRef Name="brDestinacije" />
+          </Key>
+          <Property Name="brDestinacije" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazivDestinacije" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destinacija_Koristi_Luku">
+          <Key>
+            <PropertyRef Name="Destinacija_brDestinacije" />
+            <PropertyRef Name="Luka_idLuke" />
+          </Key>
+          <Property Name="Destinacija_brDestinacije" Type="int" Nullable="false" />
+          <Property Name="Luka_idLuke" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="sifraFirme" />
+          </Key>
+          <Property Name="sifraFirme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="oblastPoslovanja" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kapetan">
+          <Key>
+            <PropertyRef Name="idKapetana" />
+          </Key>
+          <Property Name="idKapetana" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prezime" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kapetan_Upravlja_Brodom">
+          <Key>
+            <PropertyRef Name="Kapetan_idKapetana" />
+            <PropertyRef Name="Brod_idBroda" />
+          </Key>
+          <Property Name="Kapetan_idKapetana" Type="int" Nullable="false" />
+          <Property Name="Brod_idBroda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Karta">
+          <Key>
+            <PropertyRef Name="brKarte" />
+          </Key>
+          <Property Name="brKarte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cena" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="klasa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jmbg" Type="int" Nullable="false" />
+          <Property Name="brAgencije" Type="int" />
+          <Property Name="brPlovidbe" Type="int" Nullable="false" />
+          <Property Name="datum" Type="datetime" Nullable="false" />
+          <Property Name="idBroda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Luka">
+          <Key>
+            <PropertyRef Name="idLuke" />
+          </Key>
+          <Property Name="idLuke" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brDokova" Type="int" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mesto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="drzava" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plovidba">
+          <Key>
+            <PropertyRef Name="brPlovidbe" />
+          </Key>
+          <Property Name="brPlovidbe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="opis" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="polazak" Type="datetime" Nullable="false" />
+          <Property Name="brPutnika" Type="int" Nullable="false" />
+          <Property Name="brDestinacije" Type="int" Nullable="false" />
+          <Property Name="idKapetana" Type="int" Nullable="false" />
+          <Property Name="idLuke" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Putnicki">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="int" Nullable="false" />
+          <Property Name="brPutnika" Type="int" Nullable="false" />
+          <Property Name="brKabina" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Putnik">
+          <Key>
+            <PropertyRef Name="jmbg" />
+          </Key>
+          <Property Name="jmbg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="brPasosa" Type="int" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teretni">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="int" Nullable="false" />
+          <Property Name="nosivost" Type="float" Nullable="false" />
+          <Property Name="brKontejnera" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teretni_PrevoziZa_Firmu">
+          <Key>
+            <PropertyRef Name="Teretni_idBroda" />
+            <PropertyRef Name="Firma_sifraFirme" />
+          </Key>
+          <Property Name="Teretni_idBroda" Type="int" Nullable="false" />
+          <Property Name="Firma_sifraFirme" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Destinacija_Koristi_Luku_FK">
+          <End Role="Luka" Type="Self.Luka" Multiplicity="1" />
+          <End Role="Destinacija_Koristi_Luku" Type="Self.Destinacija_Koristi_Luku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Luka">
+              <PropertyRef Name="idLuke" />
+            </Principal>
+            <Dependent Role="Destinacija_Koristi_Luku">
+              <PropertyRef Name="Luka_idLuke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kapetan_Upravlja_Brodom_FK1">
+          <End Role="Kapetan" Type="Self.Kapetan" Multiplicity="1" />
+          <End Role="Kapetan_Upravlja_Brodom" Type="Self.Kapetan_Upravlja_Brodom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kapetan">
+              <PropertyRef Name="idKapetana" />
+            </Principal>
+            <Dependent Role="Kapetan_Upravlja_Brodom">
+              <PropertyRef Name="Kapetan_idKapetana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kapetan_Upravlja_Brodom_FK2">
+          <End Role="Brod" Type="Self.Brod" Multiplicity="1" />
+          <End Role="Kapetan_Upravlja_Brodom" Type="Self.Kapetan_Upravlja_Brodom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brod">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Kapetan_Upravlja_Brodom">
+              <PropertyRef Name="Brod_idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK1">
+          <End Role="Putnik" Type="Self.Putnik" Multiplicity="1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Putnik">
+              <PropertyRef Name="jmbg" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="jmbg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK2">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="0..1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="brAgencije" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="brAgencije" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK3">
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plovidba">
+              <PropertyRef Name="brPlovidbe" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="brPlovidbe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK4">
+          <End Role="Putnicki" Type="Self.Putnicki" Multiplicity="1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Putnicki">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK1">
+          <End Role="Destinacija" Type="Self.Destinacija" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinacija">
+              <PropertyRef Name="brDestinacije" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="brDestinacije" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK2">
+          <End Role="Kapetan" Type="Self.Kapetan" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kapetan">
+              <PropertyRef Name="idKapetana" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="idKapetana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK3">
+          <End Role="Luka" Type="Self.Luka" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Luka">
+              <PropertyRef Name="idLuke" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="idLuke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Putnicki_Brod_FK">
+          <End Role="Brod" Type="Self.Brod" Multiplicity="1" />
+          <End Role="Putnicki" Type="Self.Putnicki" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Brod">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Putnicki">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teretni_FK">
+          <End Role="Brod" Type="Self.Brod" Multiplicity="1" />
+          <End Role="Teretni" Type="Self.Teretni" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Brod">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Teretni">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teretni_PrevoziZa_Firmu_FK1">
+          <End Role="Teretni" Type="Self.Teretni" Multiplicity="1" />
+          <End Role="Teretni_PrevoziZa_Firmu" Type="Self.Teretni_PrevoziZa_Firmu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teretni">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Teretni_PrevoziZa_Firmu">
+              <PropertyRef Name="Teretni_idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teretni_PrevoziZa_Firmu_FK2">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Teretni_PrevoziZa_Firmu" Type="Self.Teretni_PrevoziZa_Firmu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="sifraFirme" />
+            </Principal>
+            <Dependent Role="Teretni_PrevoziZa_Firmu">
+              <PropertyRef Name="Firma_sifraFirme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BrojPlovidbiZaIstuDestinacijuIKapetana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDDEST" Type="int" Mode="In" />
+          <Parameter Name="KAPIME" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCruisesCountForDestinationAndCaptain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DESTNAME" Type="varchar" Mode="In" />
+          <Parameter Name="CAPNAME" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Number" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="CruiseTrackerDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agencija" EntityType="Self.Agencija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brod" EntityType="Self.Brod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destinacija" EntityType="Self.Destinacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destinacija_Koristi_Luku" EntityType="Self.Destinacija_Koristi_Luku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kapetan" EntityType="Self.Kapetan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kapetan_Upravlja_Brodom" EntityType="Self.Kapetan_Upravlja_Brodom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Karta" EntityType="Self.Karta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Luka" EntityType="Self.Luka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plovidba" EntityType="Self.Plovidba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Putnicki" EntityType="Self.Putnicki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Putnik" EntityType="Self.Putnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teretni" EntityType="Self.Teretni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teretni_PrevoziZa_Firmu" EntityType="Self.Teretni_PrevoziZa_Firmu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Destinacija_Koristi_Luku_FK" Association="Self.Destinacija_Koristi_Luku_FK">
+            <End Role="Luka" EntitySet="Luka" />
+            <End Role="Destinacija_Koristi_Luku" EntitySet="Destinacija_Koristi_Luku" />
+          </AssociationSet>
+          <AssociationSet Name="Kapetan_Upravlja_Brodom_FK1" Association="Self.Kapetan_Upravlja_Brodom_FK1">
+            <End Role="Kapetan" EntitySet="Kapetan" />
+            <End Role="Kapetan_Upravlja_Brodom" EntitySet="Kapetan_Upravlja_Brodom" />
+          </AssociationSet>
+          <AssociationSet Name="Kapetan_Upravlja_Brodom_FK2" Association="Self.Kapetan_Upravlja_Brodom_FK2">
+            <End Role="Brod" EntitySet="Brod" />
+            <End Role="Kapetan_Upravlja_Brodom" EntitySet="Kapetan_Upravlja_Brodom" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK1" Association="Self.Karta_FK1">
+            <End Role="Putnik" EntitySet="Putnik" />
+            <End Role="Karta" EntitySet="Karta" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK2" Association="Self.Karta_FK2">
+            <End Role="Agencija" EntitySet="Agencija" />
+            <End Role="Karta" EntitySet="Karta" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK3" Association="Self.Karta_FK3">
+            <End Role="Plovidba" EntitySet="Plovidba" />
+            <End Role="Karta" EntitySet="Karta" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK4" Association="Self.Karta_FK4">
+            <End Role="Putnicki" EntitySet="Putnicki" />
+            <End Role="Karta" EntitySet="Karta" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK1" Association="Self.Plovidba_FK1">
+            <End Role="Destinacija" EntitySet="Destinacija" />
+            <End Role="Plovidba" EntitySet="Plovidba" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK2" Association="Self.Plovidba_FK2">
+            <End Role="Kapetan" EntitySet="Kapetan" />
+            <End Role="Plovidba" EntitySet="Plovidba" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK3" Association="Self.Plovidba_FK3">
+            <End Role="Luka" EntitySet="Luka" />
+            <End Role="Plovidba" EntitySet="Plovidba" />
+          </AssociationSet>
+          <AssociationSet Name="Putnicki_Brod_FK" Association="Self.Putnicki_Brod_FK">
+            <End Role="Brod" EntitySet="Brod" />
+            <End Role="Putnicki" EntitySet="Putnicki" />
+          </AssociationSet>
+          <AssociationSet Name="Teretni_FK" Association="Self.Teretni_FK">
+            <End Role="Brod" EntitySet="Brod" />
+            <End Role="Teretni" EntitySet="Teretni" />
+          </AssociationSet>
+          <AssociationSet Name="Teretni_PrevoziZa_Firmu_FK1" Association="Self.Teretni_PrevoziZa_Firmu_FK1">
+            <End Role="Teretni" EntitySet="Teretni" />
+            <End Role="Teretni_PrevoziZa_Firmu" EntitySet="Teretni_PrevoziZa_Firmu" />
+          </AssociationSet>
+          <AssociationSet Name="Teretni_PrevoziZa_Firmu_FK2" Association="Self.Teretni_PrevoziZa_Firmu_FK2">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Teretni_PrevoziZa_Firmu" EntitySet="Teretni_PrevoziZa_Firmu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CruiseTrackerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agencija">
+          <Key>
+            <PropertyRef Name="brAgencije" />
+          </Key>
+          <Property Name="brAgencije" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kartas" Relationship="Self.Karta_FK2" FromRole="Agencija" ToRole="Karta" />
+        </EntityType>
+        <EntityType Name="Brod">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Putnicki" Relationship="Self.Putnicki_Brod_FK" FromRole="Brod" ToRole="Putnicki" />
+          <NavigationProperty Name="Teretni" Relationship="Self.Teretni_FK" FromRole="Brod" ToRole="Teretni" />
+          <NavigationProperty Name="Kapetans" Relationship="Self.Kapetan_Upravlja_Brodom" FromRole="Brod" ToRole="Kapetan" />
+        </EntityType>
+        <EntityType Name="Destinacija">
+          <Key>
+            <PropertyRef Name="brDestinacije" />
+          </Key>
+          <Property Name="brDestinacije" Type="Int32" Nullable="false" />
+          <Property Name="nazivDestinacije" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Plovidbas" Relationship="Self.Plovidba_FK1" FromRole="Destinacija" ToRole="Plovidba" />
+        </EntityType>
+        <EntityType Name="Destinacija_Koristi_Luku">
+          <Key>
+            <PropertyRef Name="Destinacija_brDestinacije" />
+            <PropertyRef Name="Luka_idLuke" />
+          </Key>
+          <Property Name="Destinacija_brDestinacije" Type="Int32" Nullable="false" />
+          <Property Name="Luka_idLuke" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Luka" Relationship="Self.Destinacija_Koristi_Luku_FK" FromRole="Destinacija_Koristi_Luku" ToRole="Luka" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="sifraFirme" />
+          </Key>
+          <Property Name="sifraFirme" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="oblastPoslovanja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teretnis" Relationship="Self.Teretni_PrevoziZa_Firmu" FromRole="Firma" ToRole="Teretni" />
+        </EntityType>
+        <EntityType Name="Kapetan">
+          <Key>
+            <PropertyRef Name="idKapetana" />
+          </Key>
+          <Property Name="idKapetana" Type="Int32" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Plovidbas" Relationship="Self.Plovidba_FK2" FromRole="Kapetan" ToRole="Plovidba" />
+          <NavigationProperty Name="Brods" Relationship="Self.Kapetan_Upravlja_Brodom" FromRole="Kapetan" ToRole="Brod" />
+        </EntityType>
+        <EntityType Name="Karta">
+          <Key>
+            <PropertyRef Name="brKarte" />
+          </Key>
+          <Property Name="brKarte" Type="Int32" Nullable="false" />
+          <Property Name="cena" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="klasa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jmbg" Type="Int32" Nullable="false" />
+          <Property Name="brAgencije" Type="Int32" />
+          <Property Name="brPlovidbe" Type="Int32" Nullable="false" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Agencija" Relationship="Self.Karta_FK2" FromRole="Karta" ToRole="Agencija" />
+          <NavigationProperty Name="Putnik" Relationship="Self.Karta_FK1" FromRole="Karta" ToRole="Putnik" />
+          <NavigationProperty Name="Plovidba" Relationship="Self.Karta_FK3" FromRole="Karta" ToRole="Plovidba" />
+          <Property Name="idBroda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Putnicki" Relationship="CruiseTrackerDBModel.Karta_FK4" FromRole="Karta" ToRole="Putnicki" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Luka">
+          <Key>
+            <PropertyRef Name="idLuke" />
+          </Key>
+          <Property Name="idLuke" Type="Int32" Nullable="false" />
+          <Property Name="brDokova" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mesto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Destinacija_Koristi_Luku" Relationship="Self.Destinacija_Koristi_Luku_FK" FromRole="Luka" ToRole="Destinacija_Koristi_Luku" />
+          <NavigationProperty Name="Plovidbas" Relationship="Self.Plovidba_FK3" FromRole="Luka" ToRole="Plovidba" />
+        </EntityType>
+        <EntityType Name="Plovidba">
+          <Key>
+            <PropertyRef Name="brPlovidbe" />
+          </Key>
+          <Property Name="brPlovidbe" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="polazak" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="brPutnika" Type="Int32" Nullable="false" />
+          <Property Name="brDestinacije" Type="Int32" Nullable="false" />
+          <Property Name="idKapetana" Type="Int32" Nullable="false" />
+          <Property Name="idLuke" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Destinacija" Relationship="Self.Plovidba_FK1" FromRole="Plovidba" ToRole="Destinacija" />
+          <NavigationProperty Name="Kapetan" Relationship="Self.Plovidba_FK2" FromRole="Plovidba" ToRole="Kapetan" />
+          <NavigationProperty Name="Kartas" Relationship="Self.Karta_FK3" FromRole="Plovidba" ToRole="Karta" />
+          <NavigationProperty Name="Luka" Relationship="Self.Plovidba_FK3" FromRole="Plovidba" ToRole="Luka" />
+        </EntityType>
+        <EntityType Name="Putnicki">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="Int32" Nullable="false" />
+          <Property Name="brPutnika" Type="Int32" Nullable="false" />
+          <Property Name="brKabina" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brod" Relationship="Self.Putnicki_Brod_FK" FromRole="Putnicki" ToRole="Brod" />
+          <NavigationProperty Name="Kartas" Relationship="CruiseTrackerDBModel.Karta_FK4" FromRole="Putnicki" ToRole="Karta" />
+        </EntityType>
+        <EntityType Name="Putnik">
+          <Key>
+            <PropertyRef Name="jmbg" />
+          </Key>
+          <Property Name="jmbg" Type="Int32" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="brPasosa" Type="Int32" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Kartas" Relationship="Self.Karta_FK1" FromRole="Putnik" ToRole="Karta" />
+        </EntityType>
+        <EntityType Name="Teretni">
+          <Key>
+            <PropertyRef Name="idBroda" />
+          </Key>
+          <Property Name="idBroda" Type="Int32" Nullable="false" />
+          <Property Name="nosivost" Type="Double" Nullable="false" />
+          <Property Name="brKontejnera" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brod" Relationship="Self.Teretni_FK" FromRole="Teretni" ToRole="Brod" />
+          <NavigationProperty Name="Firmas" Relationship="Self.Teretni_PrevoziZa_Firmu" FromRole="Teretni" ToRole="Firma" />
+        </EntityType>
+        <Association Name="Karta_FK2">
+          <End Role="Agencija" Type="Self.Agencija" Multiplicity="0..1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencija">
+              <PropertyRef Name="brAgencije" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="brAgencije" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Putnicki_Brod_FK">
+          <End Role="Brod" Type="Self.Brod" Multiplicity="1" />
+          <End Role="Putnicki" Type="Self.Putnicki" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Brod">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Putnicki">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teretni_FK">
+          <End Role="Brod" Type="Self.Brod" Multiplicity="1" />
+          <End Role="Teretni" Type="Self.Teretni" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Brod">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Teretni">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK1">
+          <End Role="Destinacija" Type="Self.Destinacija" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinacija">
+              <PropertyRef Name="brDestinacije" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="brDestinacije" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Destinacija_Koristi_Luku_FK">
+          <End Role="Luka" Type="Self.Luka" Multiplicity="1" />
+          <End Role="Destinacija_Koristi_Luku" Type="Self.Destinacija_Koristi_Luku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Luka">
+              <PropertyRef Name="idLuke" />
+            </Principal>
+            <Dependent Role="Destinacija_Koristi_Luku">
+              <PropertyRef Name="Luka_idLuke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK2">
+          <End Role="Kapetan" Type="Self.Kapetan" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kapetan">
+              <PropertyRef Name="idKapetana" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="idKapetana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK1">
+          <End Role="Putnik" Type="Self.Putnik" Multiplicity="1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Putnik">
+              <PropertyRef Name="jmbg" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="jmbg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Karta_FK3">
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="1" />
+          <End Role="Karta" Type="Self.Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plovidba">
+              <PropertyRef Name="brPlovidbe" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="brPlovidbe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Plovidba_FK3">
+          <End Role="Luka" Type="Self.Luka" Multiplicity="1" />
+          <End Role="Plovidba" Type="Self.Plovidba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Luka">
+              <PropertyRef Name="idLuke" />
+            </Principal>
+            <Dependent Role="Plovidba">
+              <PropertyRef Name="idLuke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kapetan_Upravlja_Brodom">
+          <End Role="Kapetan" Type="Self.Kapetan" Multiplicity="*" />
+          <End Role="Brod" Type="Self.Brod" Multiplicity="*" />
+        </Association>
+        <Association Name="Teretni_PrevoziZa_Firmu">
+          <End Role="Teretni" Type="Self.Teretni" Multiplicity="*" />
+          <End Role="Firma" Type="Self.Firma" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CruiseTrackerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Agencijas" EntityType="Self.Agencija" />
+          <EntitySet Name="Brods" EntityType="Self.Brod" />
+          <EntitySet Name="Destinacijas" EntityType="Self.Destinacija" />
+          <EntitySet Name="Destinacija_Koristi_Luku" EntityType="Self.Destinacija_Koristi_Luku" />
+          <EntitySet Name="Firmas" EntityType="Self.Firma" />
+          <EntitySet Name="Kapetans" EntityType="Self.Kapetan" />
+          <EntitySet Name="Kartas" EntityType="Self.Karta" />
+          <EntitySet Name="Korisniks" EntityType="Self.Korisnik" />
+          <EntitySet Name="Lukas" EntityType="Self.Luka" />
+          <EntitySet Name="Plovidbas" EntityType="Self.Plovidba" />
+          <EntitySet Name="Putnickis" EntityType="Self.Putnicki" />
+          <EntitySet Name="Putniks" EntityType="Self.Putnik" />
+          <EntitySet Name="Teretnis" EntityType="Self.Teretni" />
+          <AssociationSet Name="Karta_FK2" Association="Self.Karta_FK2">
+            <End Role="Agencija" EntitySet="Agencijas" />
+            <End Role="Karta" EntitySet="Kartas" />
+          </AssociationSet>
+          <AssociationSet Name="Putnicki_Brod_FK" Association="Self.Putnicki_Brod_FK">
+            <End Role="Brod" EntitySet="Brods" />
+            <End Role="Putnicki" EntitySet="Putnickis" />
+          </AssociationSet>
+          <AssociationSet Name="Teretni_FK" Association="Self.Teretni_FK">
+            <End Role="Brod" EntitySet="Brods" />
+            <End Role="Teretni" EntitySet="Teretnis" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK1" Association="Self.Plovidba_FK1">
+            <End Role="Destinacija" EntitySet="Destinacijas" />
+            <End Role="Plovidba" EntitySet="Plovidbas" />
+          </AssociationSet>
+          <AssociationSet Name="Destinacija_Koristi_Luku_FK" Association="Self.Destinacija_Koristi_Luku_FK">
+            <End Role="Luka" EntitySet="Lukas" />
+            <End Role="Destinacija_Koristi_Luku" EntitySet="Destinacija_Koristi_Luku" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK2" Association="Self.Plovidba_FK2">
+            <End Role="Kapetan" EntitySet="Kapetans" />
+            <End Role="Plovidba" EntitySet="Plovidbas" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK1" Association="Self.Karta_FK1">
+            <End Role="Putnik" EntitySet="Putniks" />
+            <End Role="Karta" EntitySet="Kartas" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK3" Association="Self.Karta_FK3">
+            <End Role="Plovidba" EntitySet="Plovidbas" />
+            <End Role="Karta" EntitySet="Kartas" />
+          </AssociationSet>
+          <AssociationSet Name="Plovidba_FK3" Association="Self.Plovidba_FK3">
+            <End Role="Luka" EntitySet="Lukas" />
+            <End Role="Plovidba" EntitySet="Plovidbas" />
+          </AssociationSet>
+          <AssociationSet Name="Kapetan_Upravlja_Brodom" Association="Self.Kapetan_Upravlja_Brodom">
+            <End Role="Kapetan" EntitySet="Kapetans" />
+            <End Role="Brod" EntitySet="Brods" />
+          </AssociationSet>
+          <AssociationSet Name="Teretni_PrevoziZa_Firmu" Association="Self.Teretni_PrevoziZa_Firmu">
+            <End Role="Teretni" EntitySet="Teretnis" />
+            <End Role="Firma" EntitySet="Firmas" />
+          </AssociationSet>
+          <AssociationSet Name="Karta_FK4" Association="CruiseTrackerDBModel.Karta_FK4">
+            <End Role="Putnicki" EntitySet="Putnickis" />
+            <End Role="Karta" EntitySet="Kartas" />
+          </AssociationSet>
+          <FunctionImport Name="BrojPlovidbiZaIstuDestinacijuIKapetana" ReturnType="Collection(Int32)">
+            <Parameter Name="IDDEST" Mode="In" Type="Int32" />
+            <Parameter Name="KAPIME" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCruisesCountForDestinationAndCaptain" IsComposable="true" ReturnType="Collection(Int32)">
+            <Parameter Name="DESTNAME" Mode="In" Type="String" />
+            <Parameter Name="CAPNAME" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <Association Name="Karta_FK4">
+          <End Type="CruiseTrackerDBModel.Putnicki" Role="Putnicki" Multiplicity="1" />
+          <End Type="CruiseTrackerDBModel.Karta" Role="Karta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Putnicki">
+              <PropertyRef Name="idBroda" />
+            </Principal>
+            <Dependent Role="Karta">
+              <PropertyRef Name="idBroda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CruiseTrackerDBModelStoreContainer" CdmEntityContainer="CruiseTrackerDBEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agencijas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Agencija">
+              <MappingFragment StoreEntitySet="Agencija">
+                <ScalarProperty Name="brAgencije" ColumnName="brAgencije" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brods">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Brod">
+              <MappingFragment StoreEntitySet="Brod">
+                <ScalarProperty Name="idBroda" ColumnName="idBroda" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destinacijas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Destinacija">
+              <MappingFragment StoreEntitySet="Destinacija">
+                <ScalarProperty Name="brDestinacije" ColumnName="brDestinacije" />
+                <ScalarProperty Name="nazivDestinacije" ColumnName="nazivDestinacije" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destinacija_Koristi_Luku">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Destinacija_Koristi_Luku">
+              <MappingFragment StoreEntitySet="Destinacija_Koristi_Luku">
+                <ScalarProperty Name="Destinacija_brDestinacije" ColumnName="Destinacija_brDestinacije" />
+                <ScalarProperty Name="Luka_idLuke" ColumnName="Luka_idLuke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firmas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Firma">
+              <MappingFragment StoreEntitySet="Firma">
+                <ScalarProperty Name="sifraFirme" ColumnName="sifraFirme" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="oblastPoslovanja" ColumnName="oblastPoslovanja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kapetans">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Kapetan">
+              <MappingFragment StoreEntitySet="Kapetan">
+                <ScalarProperty Name="idKapetana" ColumnName="idKapetana" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kartas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Karta">
+              <MappingFragment StoreEntitySet="Karta">
+                <ScalarProperty Name="idBroda" ColumnName="idBroda" />
+                <ScalarProperty Name="brKarte" ColumnName="brKarte" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="klasa" ColumnName="klasa" />
+                <ScalarProperty Name="jmbg" ColumnName="jmbg" />
+                <ScalarProperty Name="brAgencije" ColumnName="brAgencije" />
+                <ScalarProperty Name="brPlovidbe" ColumnName="brPlovidbe" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisniks">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lukas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Luka">
+              <MappingFragment StoreEntitySet="Luka">
+                <ScalarProperty Name="idLuke" ColumnName="idLuke" />
+                <ScalarProperty Name="brDokova" ColumnName="brDokova" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="mesto" ColumnName="mesto" />
+                <ScalarProperty Name="drzava" ColumnName="drzava" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plovidbas">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Plovidba">
+              <MappingFragment StoreEntitySet="Plovidba">
+                <ScalarProperty Name="brPlovidbe" ColumnName="brPlovidbe" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="polazak" ColumnName="polazak" />
+                <ScalarProperty Name="brPutnika" ColumnName="brPutnika" />
+                <ScalarProperty Name="brDestinacije" ColumnName="brDestinacije" />
+                <ScalarProperty Name="idKapetana" ColumnName="idKapetana" />
+                <ScalarProperty Name="idLuke" ColumnName="idLuke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Putnickis">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Putnicki">
+              <MappingFragment StoreEntitySet="Putnicki">
+                <ScalarProperty Name="idBroda" ColumnName="idBroda" />
+                <ScalarProperty Name="brPutnika" ColumnName="brPutnika" />
+                <ScalarProperty Name="brKabina" ColumnName="brKabina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Putniks">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Putnik">
+              <MappingFragment StoreEntitySet="Putnik">
+                <ScalarProperty Name="jmbg" ColumnName="jmbg" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="brPasosa" ColumnName="brPasosa" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teretnis">
+            <EntityTypeMapping TypeName="CruiseTrackerDBModel.Teretni">
+              <MappingFragment StoreEntitySet="Teretni">
+                <ScalarProperty Name="idBroda" ColumnName="idBroda" />
+                <ScalarProperty Name="nosivost" ColumnName="nosivost" />
+                <ScalarProperty Name="brKontejnera" ColumnName="brKontejnera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Kapetan_Upravlja_Brodom" TypeName="CruiseTrackerDBModel.Kapetan_Upravlja_Brodom" StoreEntitySet="Kapetan_Upravlja_Brodom">
+            <EndProperty Name="Kapetan">
+              <ScalarProperty Name="idKapetana" ColumnName="Kapetan_idKapetana" />
+            </EndProperty>
+            <EndProperty Name="Brod">
+              <ScalarProperty Name="idBroda" ColumnName="Brod_idBroda" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Teretni_PrevoziZa_Firmu" TypeName="CruiseTrackerDBModel.Teretni_PrevoziZa_Firmu" StoreEntitySet="Teretni_PrevoziZa_Firmu">
+            <EndProperty Name="Teretni">
+              <ScalarProperty Name="idBroda" ColumnName="Teretni_idBroda" />
+            </EndProperty>
+            <EndProperty Name="Firma">
+              <ScalarProperty Name="sifraFirme" ColumnName="Firma_sifraFirme" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="BrojPlovidbiZaIstuDestinacijuIKapetana" FunctionName="CruiseTrackerDBModel.Store.BrojPlovidbiZaIstuDestinacijuIKapetana" />
+          <FunctionImportMapping FunctionImportName="GetCruisesCountForDestinationAndCaptain" FunctionName="CruiseTrackerDBModel.Store.GetCruisesCountForDestinationAndCaptain" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

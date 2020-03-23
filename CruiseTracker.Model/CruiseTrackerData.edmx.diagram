@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="677a0d19aead4bd38418fa03fa0f79da" Name="Diagram1">
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.C__RefactorLog" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Agencija" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Brod" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Destinacija" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Destinacija_Koristi_Luku" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Firma" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Kapetan" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Karta" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Korisnik" Width="1.5" PointX="18.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Luka" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Plovidba" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Putnicki" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Putnik" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CruiseTrackerDBModel.Teretni" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Karta_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Putnicki_Brod_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Teretni_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Plovidba_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Destinacija_Koristi_Luku_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Plovidba_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Karta_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Karta_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Plovidba_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Kapetan_Upravlja_Brodom" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Teretni_PrevoziZa_Firmu" ManuallyRouted="false" />
+        <AssociationConnector Association="CruiseTrackerDBModel.Karta_FK4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

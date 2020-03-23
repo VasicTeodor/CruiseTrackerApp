@@ -1,0 +1,82 @@
+﻿<Window x:Class="CruiseTracker.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CruiseTracker.WPF"
+        xmlns:view="clr-namespace:CruiseTracker.WPF.View"
+        xmlns:viewModel="clr-namespace:CruiseTracker.WPF.ViewModel"
+        mc:Ignorable="d"
+        Title="Cruise Tracker v1.0" Height="600" Width="1050">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:BoatsViewModel}">
+            <view:BoatsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:CruisesViewModel}">
+            <view:CruisesView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:DestinationsViewModel}">
+            <view:DestinationsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+            <view:MenuView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:HarborsViewModel}">
+            <view:HarborsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddHarborViewModel}">
+            <view:AddHarborView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddCargoShipViewModel}">
+            <view:AddCargoShipView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddPassengerShipViewModel}">
+            <view:AddPassengerShipView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddDestinationViewModel}">
+            <view:AddDestinationView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddCruiseViewModel}">
+            <view:AddCruiseView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:EditDestinationViewModel}">
+            <view:EditDestinationView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:EditCruiseViewModel}">
+            <view:EditCruiseView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:EditCargoShipViewModel}">
+            <view:EditCargoShipView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:EditPassengerShipViewModel}">
+            <view:EditPassengerShipView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:EditHarborViewModel}">
+            <view:EditHarborView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="#7F737B87" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.Column="0" Content="{Binding Menu}"/>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</Window>
